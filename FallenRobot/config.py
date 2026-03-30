@@ -1,51 +1,53 @@
+import os
+
 class Config(object):
     LOGGER = True
 
-    # Get this value from my.telegram.org/apps
-    API_ID = 6
-    API_HASH = "eb06d4abfb49dc3eeb1aeb98ae0f581e"
+    # Telegram API credentials - from my.telegram.org/apps
+    API_ID = int(os.environ.get("API_ID", 6))
+    API_HASH = os.environ.get("API_HASH", "eb06d4abfb49dc3eeb1aeb98ae0f581e")
 
-    CASH_API_KEY = ""  # Get this value for currency converter from https://www.alphavantage.co/support/#api-key
+    # Bot token - from @BotFather
+    TOKEN = os.environ.get("TOKEN", "")
 
-    DATABASE_URL = ""  # A sql database url from elephantsql.com
+    # Database
+    DATABASE_URL = os.environ.get("DATABASE_URL", "")
+    MONGO_DB_URI = os.environ.get("MONGO_DB_URI", "")
 
-    EVENT_LOGS = ()  # Event logs channel to note down important bot level events
+    # Owner
+    OWNER_ID = int(os.environ.get("OWNER_ID", 1356469075))
 
-    MONGO_DB_URI = ""  # Get ths value from cloud.mongodb.com
+    # Optional API keys
+    CASH_API_KEY = os.environ.get("CASH_API_KEY", "")
+    TIME_API_KEY = os.environ.get("TIME_API_KEY", "")
 
-    # Telegraph link of the image which will be shown at start command.
-    START_IMG = "https://te.legra.ph/file/40eb1ed850cdea274693e.jpg"
+    # Bot settings
+    START_IMG = os.environ.get("START_IMG", "https://te.legra.ph/file/40eb1ed850cdea274693e.jpg")
+    SUPPORT_CHAT = os.environ.get("SUPPORT_CHAT", "DevilsHeavenMF")
+    EVENT_LOGS = os.environ.get("EVENT_LOGS", "")
 
-    SUPPORT_CHAT = "DevilsHeavenMF"  # Your Telegram support group chat username where your users will go and bother you
+    # Optional user lists
+    BL_CHATS = []
+    DRAGONS = []
+    DEV_USERS = []
+    DEMONS = []
+    TIGERS = []
+    WOLVES = []
 
-    TOKEN = ""  # Get bot token from @BotFather on Telegram
-
-    TIME_API_KEY = ""  # Get this value from https://timezonedb.com/api
-
-    OWNER_ID = 1356469075  # User id of your telegram account (Must be integer)
-
-    # Optional fields
-    BL_CHATS = []  # List of groups that you want blacklisted.
-    DRAGONS = []  # User id of sudo users
-    DEV_USERS = []  # User id of dev users
-    DEMONS = []  # User id of support users
-    TIGERS = []  # User id of tiger users
-    WOLVES = []  # User id of whitelist users
-
+    # Feature flags
     ALLOW_CHATS = True
     ALLOW_EXCL = True
     DEL_CMDS = True
     INFOPIC = True
+    STRICT_GBAN = True
+
     LOAD = []
     NO_LOAD = []
-    STRICT_GBAN = True
     TEMP_DOWNLOAD_DIRECTORY = "./"
     WORKERS = 8
 
-
 class Production(Config):
     LOGGER = True
-
 
 class Development(Config):
     LOGGER = True

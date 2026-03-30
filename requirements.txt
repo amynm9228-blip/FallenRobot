@@ -22,6 +22,7 @@ pillow==10.4.0
 opencv-python-headless==4.8.1.78
 
 # Utils
+numpy==1.26.4
 apscheduler==3.6.3
 beautifulsoup4==4.12.2
 bleach==6.1.0
